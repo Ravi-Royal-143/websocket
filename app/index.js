@@ -1,24 +1,24 @@
 
 const express = require('express');
 const cors = require('cors');
-const port = 3001;
+const port = process.env.PORT || 3001;
 
 
 const app = express();
 var http = require('http').createServer(app);
-// var io = require('socket.io')(http, {
-//     cors: {
-//         origins: ['*']
-//     }
-// });
+var io = require('socket.io')(http, {
+    cors: {
+        origins: ['*']
+    }
+});
 
-// app.use(cors());
+app.use(cors());
 
-// io.on('connection', (socket) => {
-//     socket.on('message', (msg) => {
-//         socket.broadcast.emit('message-broadcast', msg);
-//     });
-// });
+io.on('connection', (socket) => {
+    socket.on('message', (msg) => {
+        socket.broadcast.emit('message-broadcast', msg);
+    });
+});
 
 app.get("/working", (req, res) => {
     res.send("working")
