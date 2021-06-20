@@ -20,6 +20,10 @@ io.on('connection', (socket) => {
     });
 });
 
+app.get("/working", (req, res) => {
+    res.send("working")
+})
+
 http.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}`)
 });
