@@ -12,9 +12,7 @@ var io = require('socket.io')(http, {
 app.use(cors());
 
 io.on('connection', (socket) => {
-    console.log("ASdad start")
     socket.on('message', (msg) => {
-        console.log('on mess')
         socket.broadcast.emit('message-broadcast', msg);
     });
 });
