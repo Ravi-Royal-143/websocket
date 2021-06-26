@@ -1,24 +1,11 @@
-
-const express = require('express');
-const cors = require('cors');
+var {app, http} = require('./app');
+require('dotenv').config();
 const port = process.env.PORT || 3001;
+console.log(process.env.pass)
+var mongoose = require('./mongo');
 
-
-const app = express();
-var http = require('http').createServer(app);
-var io = require('socket.io')(http, {
-    cors: {
-        origins: ['*']
-    }
-});
-
-app.use(cors());
-
-io.on('connection', (socket) => {
-    socket.on('message', (msg) => {
-        socket.broadcast.emit('message-broadcast', msg);
-    });
-});
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'MongoDB connection error:'))
 
 app.get("/working", (req, res) => {
     res.send("working")
