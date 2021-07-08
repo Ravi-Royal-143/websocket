@@ -1,6 +1,6 @@
 const express = require("express");
 
-const { createPost, getPosts } = require("../Controller/posts");
+const { createPost, getPosts } = require("../controller/posts");
 
 // const checkAuth = require("../middleWare/check-auth");
 const extractFile = require("../middleWare/extract-file");
